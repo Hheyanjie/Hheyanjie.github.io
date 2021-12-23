@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>第一个three.js文件_WebGL三维场景</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            /* 隐藏body窗口区域滚动条 */
+        }
+    </style>
+    <!--引入three.js三维引擎-->
+    <script crossorigin="anonymous" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" src="https://lib.baomitu.com/jquery/3.6.0/jquery.js"></script>
+    <script src="../../three.js/three.js"></script>
+    <script src="../../three.js/OrbitControls.js"></script>
+    <script src="../../three.js/MTLLoader.js"></script>
+    <script src="../../three.js/OBJLoader.js"></script>
+    <script src="get_obj.js"></script>
+    <script src="move.js"></script>
+</head>
+
+<body>
+
+<script>
+    var p = 1;
+    var vis = [];
+    var cat;
+    var alpha = 90;
+    /**
+     * 创建场景对象Scene
+     */
+    var wall = [];
+    var size_x = 100,size_y = 100,size_z = 100;
+
+    var scene = new THREE.Scene();
+    var axisHelper = new THREE.AxisHelper(250);
+    scene.add(axisHelper);
+
+    /**
+     * 创建网格模型
+     */
+        // var geometry = new THREE.SphereGeometry(60, 40, 40); //创建一个球体几何对象
+    var textureLoader = new THREE.TextureLoader();
+    var mesh1 = new THREE.Mesh(new THREE.BoxGeometry(4000, 1, 4000), new THREE.MeshBasicMaterial({map: textureLoader.load("1.png")}));
+
+
+    var geometry = new THREE.BoxGeometry(4000, 1, 4000); //创建一个立方体几何对象Geometry
+
+    var material = new THREE.MeshLambertMaterial({
+        color: 0xffffff
+    }); //材质对象Material
+    var mesh = new THREE.Mesh(geometry, material); //网格模型对象Mesh
+    // pig = new THREE.Mesh(new THREE.BoxGeometry(100, 100, 100).translate(0,50,0), new THREE.MeshLambertMaterial({
+    //     color: 0xff0000
+    // }));
+
+    load();
+
+    // for(var i = 0; i < 10; i++) {
+    //     wall[i] = new THREE.Mesh(new THREE.BoxGeometry(100, 100, 100).translate(0,i*100+50,0), material);
+    //     scene.add(wall[i]);
+    // }
+    scene.add(mesh1); //网格模型添加到场景中
+    // scene.add(pig); //网格模型添加到场景中
+    /**
+     * 光源设置
+     */
+        //点光源
+    var point = new THREE.PointLight(0xffffff);
+    point.position.set(-300, 1000, 500); //点光源位置
+    scene.add(point); //点光源添加到场景中
+    //环境光
+    var ambient = new THREE.AmbientLight(0x333333);
+    scene.add(ambient);
+    // console.log(scene)
+    // console.log(scene.children)
+    /**
+     * 相机设置
+     */
+    var width = window.innerWidth; //窗口宽度
+    var height = window.innerHeight; //窗口高度
+    var k = width / height; //窗口宽高比
+    //创建相机对象
+    camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 1000000 );
+    camera.position.set(-2500, 2000, 100); //设置相机位置
+    camera.lookAt(scene.position); //设置相机方向(指向的场景对象)
+
+
+    /**
+     * 创建渲染器对象
+     */
+    var renderer = new THREE.WebGLRenderer({antialias: true});
+    renderer.setSize(width, height);//设置渲染区域尺寸
+    renderer.setClearColor(0xb9d3ff, 1); //设置背景颜色
+    document.body.appendChild(renderer.domElement); //body元素中插入canvas对象
+    //执行渲染操作  指定场景 、相机作为参数
+    // function render() {
+    //     renderer.render(scene,camera);//执行渲染操作
+    //     mesh.rotateX(0.01);//每次绕y轴旋转0.01弧度
+    //     // mesh.translateY(0.1);
+    //     requestAnimationFrame(render);//请求再次执行渲染函数render
+    // }
+    // render();
+    function render() {
+        requestAnimationFrame(render);
+        // mesh.rotateY(0.01);
+        renderer.render(scene,camera);//执行渲染操作
+    }
+    render();
+    var controls = new THREE.OrbitControls(camera,renderer.domElement);//创建控件对象
+    // controls.addEventListener('change', render);//监听鼠标、键盘事件
+</script>
+
+</body>
+</html>

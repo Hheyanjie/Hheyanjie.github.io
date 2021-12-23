@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/cuon-utils.js"></script>
+    <script src="../js/webgl-debug.js"></script>
+    <script src="../js/webgl-utils.js"></script>
+    <script src="../js/gl-matrix-min.js"></script>
+    <script src="../js/cuon-matrix.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <!--    <script src="triangle.js"></script>-->
+    <script src="demo2-1.js"></script>
+</head>
+<body onload="main()">
+<div style="text-align: center;" >
+    <h1>立方体的平移、旋转、缩放</h1>
+    <canvas id="gl" width="400" height="400"></canvas><br>
+    <button id = "X" onclick="XX()" class="btn btn-default">XXX</button>
+    <button id = "Y" onclick="YY()" class="btn btn-default">YYY</button>
+    <button id = "Z" onclick="ZZ()" class="btn btn-default">ZZZ</button>
+    <br>
+    <button onclick="f1()" class="btn btn-default">X左移</button>
+    <button onclick="f2()" class="btn btn-default">X右移</button>
+    <br>
+    <button onclick="f3()" class="btn btn-default">Y上移</button>
+    <button onclick="f4()" class="btn btn-default">Y下移</button>
+    <br>
+    <button onclick="f5()" class="btn btn-default">Z前移</button>
+    <button onclick="f6()" class="btn btn-default">Z后移</button>
+    <br>
+    <button onclick="f7()" class="btn btn-default">X放大</button>
+    <button onclick="f8()" class="btn btn-default">X缩小</button>
+    <br>
+    <button onclick="f9()" class="btn btn-default">Y放大</button>
+    <button onclick="f10()" class="btn btn-default">Y缩小</button>
+    <br>
+    <button onclick="f11()" class="btn btn-default">Z放大</button>
+    <button onclick="f12()" class="btn btn-default">Z缩小</button>
+    <br>
+    <button id = "start" onclick="start()">Start</button>
+    <button id = "stop" onclick="stop()">Stop</button>
+</div>
+</body>
+</html>

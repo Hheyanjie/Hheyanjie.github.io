@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/css">
+
+    </script>
+    <script src="../js/cuon-utils.js"></script>
+    <script src="../js/webgl-debug.js"></script>
+    <script src="../js/webgl-utils.js"></script>
+    <script src="../js/gl-matrix-min.js"></script>
+    <script src="../js/cuon-matrix.js"></script>
+    <!--    <script src="triangle.js"></script>-->
+    <script src="unit.js"></script>
+</head>
+<body onload="main()">
+<div style="text-align: center;">
+    <canvas id="gl" width="400" height="400"></canvas><br>
+    旋转 ： <input type="text" value="0" id="angle"><br><br>
+    平移 x : <input type="text" value="0" id="location_x">
+    y : <input type="text" value="0" id="location_y"><br><br>
+    备注：旋转输入0 - 360，平移输入（-1，1）的一位小数<br><br>
+    <button onclick="main()">绘制</button>
+</div>
+</body>
+</html>
